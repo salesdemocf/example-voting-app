@@ -1,18 +1,18 @@
 dependencies:
 - name: postgresql
-  repository: https://charts.helm.sh/stable
-  version: 0.9.5
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.8.11
 - name: redis
-  repository: https://charts.helm.sh/stable
-  version: 1.2.2
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.3.4
 - name: result
   repository: file://local-charts/result
-  version: 1.1.1
+  version: 2.0.0
 - name: vote
   repository: file://local-charts/vote
-  version: 1.1.1
+  version: 2.0.0
 - name: worker
   repository: file://local-charts/worker
-  version: 1.1.1
-digest: sha256:6b759c688174ef1e07837a33273f63721d8bc91fcc0eba279820e134326a016f
-generated: "2021-01-12T22:54:16.410778-08:00"
+  version: 2.0.0
+digest: sha256:a14f2de12c7f73c11c213fcbfea35b7279573b27be9192a383f8e736c521cb22
+generated: "2021-04-20T16:50:11.925167-07:00"

@@ -5,9 +5,9 @@ keywords:
 - codefresh
 - kubernetes
 - example-voting-app
-version: 1.0.0
+version: 2.0.0
 sources:
-- https://github.com/codefresh-io/example-voting-app
+- https://github.com/salesdemocf/example-voting-app
 maintainers:
 - name: Dustin Van Buskirk
-  email: dustinvb@codefresh.io
+  email: dustin@codefresh.io

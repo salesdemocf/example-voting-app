@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -10,6 +10,9 @@ metadata:
     version: {{ .Values.image.tag | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
   template:
     metadata:
       labels:
@@ -27,11 +30,11 @@ spec:
           - name: POSTGRES_SERVER
             value: {{ .Values.postgresql.server | default (printf "%s-postgresql" ( .Release.Name )) | quote }}
           - name: POSTGRES_USERNAME
-            value: {{ .Values.postgresql.username | default "postgres" | quote }}
+            value: {{ .Values.postgresql.postgresUsername | default "postgres" | quote }}
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: "postgresql-{{ .Release.Name }}"
                 key: password
           - name: REDIS_HOST
-            value: {{ .Values.redis.host | default (printf "%s-redis" ( .Release.Name )) | quote }}
+            value: {{ .Values.redis.host | default (printf "%s-redis-master" ( .Release.Name )) | quote }}
