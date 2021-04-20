@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -10,6 +10,9 @@ metadata:
     version: {{ .Values.image.tag | quote }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "fullname" . }}
   template:
     metadata:
       labels:
@@ -30,6 +33,6 @@ spec:
           - name: POSTGRES_SERVER
             value: {{ .Values.postgresql.server | default (printf "%s-postgresql" ( .Release.Name )) | quote }}
           - name: POSTGRES_USERNAME
-            value: {{ default "postgres" .Values.postgresql.postgresUser | quote }}
+            value: {{ default "postgres" .Values.postgresql.postgresUsername | quote }}
           - name: POSTGRES_PASSWORD
-            value: {{ default "postgres" .Values.postgresql.postgresPassword | quote }}
+            value: {{ default "postgres" .Values.postgresql.postgresqlPassword | quote }}
