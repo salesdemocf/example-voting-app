@@ -131,14 +131,21 @@ steps:
           isPRopen: "'${{CF_PULL_REQUEST_ACTION}}' == 'opened'"
           isPRsynchronized: "'${{CF_PULL_REQUEST_ACTION}}' == 'synchronize'"
           isPRreopen: "'${{CF_PULL_REQUEST_ACTION}}' == 'reopened'"
-  PackageHelmChart:
-    stage: staging
-    type: helm
-    arguments:
-      action: push
-      chart_name: /codefresh/volume/${{CF_REPO_NAME}}/${{CF_REPO_NAME}}
-      chart_repo_url: 'cm://h.cfcr.io/codefreshdemo/default'
-
+  HelmChartUpdate:
+    title: Update Helm Chart Version
+    stage: package
+    image: gksoftware/yq
+    working_directory: ${{main_clone}}
+    commands: 
+      - yq w -i example-voting-app/Chart.yaml version ${{CF_RELEASE_TAG}}
+  HelmChartPush:
+    title: Push Helm Chart to Chart Repository
+    stage: package
+    image: codefresh/cfstep-helm:3.5.2
+    working_directory: ${{main_clone}}
+    environment:
+      - CHART_REF=example-voting-app
+      - ACTION=push
   UpgradeStagingRelease:
     stage: staging
     title: Upgrading Staging Release
