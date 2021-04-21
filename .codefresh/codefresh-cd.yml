@@ -4,6 +4,7 @@ stages:
   - push
   - security
   - "pull request"
+  - package
   - staging
   - production
 steps:
