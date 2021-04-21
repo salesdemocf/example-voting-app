@@ -11,4 +11,4 @@ steps:
     image: codefresh/cfstep-helm:3.5.2
     commands:
       - kubectl config use-context ${{KUBE_CONTEXT}}
-      - helm delete -n pull-requests ${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_PULL_REQUEST_NUMBER}}-eva --purge
+      - helm delete -n pull-requests ${{CF_BRANCH_TAG_NORMALIZED}}-${{CF_PULL_REQUEST_NUMBER}}-eva
