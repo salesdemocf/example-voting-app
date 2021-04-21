@@ -6,6 +6,7 @@ stages:
   - "pull request"
   - package
   - staging
+  - approval
   - production
 steps:
   main_clone:
@@ -205,7 +206,7 @@ steps:
           stageRelease: "'${{CF_PRERELEASE_FLAG}}' == 'true'"
           prodRelease: "'${{CF_PRERELEASE_FLAG}}' == 'false'"
   ProductionApproval:
-    stage: production
+    stage: approval
     type: pending-approval
     title: Deploy to Production?
     description: Deploys current release to production
