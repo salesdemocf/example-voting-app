@@ -140,6 +140,11 @@ steps:
     working_directory: ${{main_clone}}
     commands: 
       - yq w -i example-voting-app/Chart.yaml version ${{CF_RELEASE_TAG}}
+    when:
+      condition:
+        any:
+          stageRelease: "'${{CF_PRERELEASE_FLAG}}' == 'true'"
+          prodRelease: "'${{CF_PRERELEASE_FLAG}}' == 'false'"
   HelmChartPush:
     title: Push Helm Chart to Chart Repository
     stage: package
@@ -148,6 +153,11 @@ steps:
     environment:
       - CHART_REF=example-voting-app
       - ACTION=push
+    when:
+      condition:
+        any:
+          stageRelease: "'${{CF_PRERELEASE_FLAG}}' == 'true'"
+          prodRelease: "'${{CF_PRERELEASE_FLAG}}' == 'false'"
   UpgradeStagingRelease:
     stage: staging
     title: Upgrading Staging Release
