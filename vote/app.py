@@ -7,8 +7,8 @@ import json
 
 option_a = os.getenv('OPTION_A', "New Orleans")
 option_b = os.getenv('OPTION_B', "Epcot")
-hostname = socket.gethostname()
-
+option_a = os.getenv('OPTION_A', "Portland")
+option_a = os.getenv('OPTION_B', "Disney Land")
 app = Flask(__name__)
 
 def get_redis():
