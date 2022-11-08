@@ -62,7 +62,7 @@ def test_vote_click(browser):
 
 def test_confirm_result_title(browser):
     browser.get("http://{}:80".format(result_endpoint_ip))
-    assert "Marvel vs DC -- Result" in browser.title
+    assert "Vacation Vote -- Result" in browser.title
 
 
 def test_confirm_result(browser):
