@@ -5,8 +5,8 @@ import socket
 import random
 import json
 import logging
-
-option_a = os.getenv('OPTION_A', "Magneto")
+option_a = os.getenv('OPTION_A', "Denver")
+option_b = os.getenv('OPTION_B', "Epcot")
 option_b = os.getenv('OPTION_B', "Cyclops")
 hostname = socket.gethostname()
 
